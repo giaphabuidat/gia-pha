@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "name": "Nguyễn Văn A",
+        "dob": "1920-1990",
+        "image": "url_anh.jpg",
+        "pid": null
+    },
+    {
+        "id": 2,
+        "name": "Nguyễn Văn B",
+        "dob": "1945-",
+        "image": "url_anh.jpg",
+        "pid": 1
+    }
+]
