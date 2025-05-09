@@ -13,24 +13,5 @@
     <h2 style="text-align:center">Gia Phả Dòng Họ</h2>
     <div id="tree"></div>
     <script src="javascript.js"></script>
-    <script>
-        fetch('data.json')
-            .then(response => response.json())
-            .then(data => {
-                new FamilyTree(document.getElementById('tree'), {
-                    template: 'olivia',
-                    nodeBinding: {
-                        field_0: 'name',
-                        field_1: 'dob',
-                        img_0: 'image'
-                    },
-                    nodes: data
-                });
-            })
-            .catch(error => {
-                document.getElementById('tree').innerHTML = '<p style="color:red">Không tải được dữ liệu JSON!</p>';
-                console.error(error);
-            });
-    </script>
 </body>
 </html>
