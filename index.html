@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Gia Phả Nâng Cao</title>
+    <script src="https://cdn.balkan.app/js/familytree.js"></script>
+    <style>
+        #tree { 
+            width: 100%; 
+            height: 90vh;
+            background: #f8f9fa;
+        }
+        .tools {
+            padding: 15px;
+            background: #e9ecef;
+        }
+    </style>
+</head>
+<body>
+    <div class="tools">
+        <input type="file" id="jsonFile" accept=".json">
+        <button onclick="saveData()">Lưu thay đổi</button>
+    </div>
+    <div id="tree"></div>
+
+    <script>
+        const family = new FamilyTree('#tree', {
+            template: 'olivia',
+            nodeBinding: {
+                field_0: 'name',
+                field_1: 'dob',
+                img_0: 'image'
+            },
+            editForm: {
+                elements: [
+                    { type: 'textbox', label: 'Họ tên', binding: 'name' },
+                    { type: 'textbox', label: 'Ngày sinh', binding: 'dob' },
+                    { type: 'textbox', label: 'Ảnh đại diện', binding: 'image' }
+                ]
+            }
+        });
+
+        // Tải file JSON
+        document.getElementById('jsonFile').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                family.load(JSON.parse(e.target.result));
+            };
+            reader.readAsText(file);
+        });
+
+        // Xuất dữ liệu
+        function saveData() {
+            const jsonData = family.export('json');
+            const blob = new Blob([jsonData], {type: 'application/json'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'giapha.json';
+            a.click();
+        }
+    </script>
+</body>
+</html>
